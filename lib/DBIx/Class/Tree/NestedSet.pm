@@ -119,7 +119,7 @@ sub insert {
             }
 
             $row->update({
-                $root => $primary_columns[0],
+                $root => \"$primary_columns[0]",
             });
 
             $row->discard_changes;
