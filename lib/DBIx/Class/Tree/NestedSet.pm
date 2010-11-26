@@ -298,7 +298,7 @@ sub _attach_node {
     my ($root, $left, $right, $level) = $self->_get_columns;
 
     # $self cannot be a descendant of $node or $node itself
-    if ($self->$left >= $node->$left && $self->$right <= $node->$right) {
+    if ($self->$root == $node->$root && $self->$left >= $node->$left && $self->$right <= $node->$right) {
         croak("Cannot _attach_node to it's own descendant ");
     }
 
