@@ -1350,7 +1350,7 @@ Code by Ian Docherty E<lt>pause@icydee.comE<gt>
 
 Based on original code by Florian Ragwitz E<lt>rafl@debian.orgE<gt>
 
-Incorporating ideas and code from Pedro Melo E<lt>melo@simplicidade.org<gt>
+Incorporating ideas and code from Pedro Melo E<lt>melo@simplicidade.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
