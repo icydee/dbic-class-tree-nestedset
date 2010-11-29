@@ -1354,7 +1354,7 @@ Incorporating ideas and code from Pedro Melo E<lt>melo@simplicidade.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (c) 2009 The above authors
+Copyright (c) 2009, 2010 The above authors
 
 This is free software. You may distribute this code under the same terms as Perl itself.
 
