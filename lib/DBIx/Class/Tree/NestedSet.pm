@@ -1240,7 +1240,7 @@ Create a new node as a leftmost child to C<$homer>
 =head2 ATTACH METHODS
 
 The following attach methods take an existing node (and all of it's
-descendents) and attaches them to the tree in relation to an existing node.
+descendants) and attaches them to the tree in relation to an existing node.
 
 The node being inserted can either be from the same tree (as identified
 by the root_column) or from another tree. If the root of another tree is
@@ -1350,6 +1350,14 @@ node it exchanged with.
 
 If the C<$node> is already the rightmost node then no exchange takes place
 and the method returns undef.
+
+=head2 CUTTING METHODS
+
+=head2 take_cutting
+
+Cuts the invocant and its descendants out of the tree they are in,
+making the invocant the root of a new tree. Returns the modified
+invocant.
 
 =head1 CAVEATS
 
