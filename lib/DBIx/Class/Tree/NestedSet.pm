@@ -1371,9 +1371,9 @@ reloaded them from the database.
 
 A simple demonstration of this
 
-  $grampa   = $schema->schema->resultset('Simpsons')->create({ name = 'Abraham' });
-  $homer    = $grampa->add_children({name = 'Homer'});
-  $bart     = $homer->add_children({name = 'Bart'});
+  $grampa   = $schema->schema->resultset('Simpsons')->create({ name => 'Abraham' });
+  $homer    = $grampa->add_children({name => 'Homer'});
+  $bart     = $homer->add_children({name => 'Bart'});
 
 The methods in this module will do their best to keep instances that they know
 about updated. For example the first call to C<add_children> in the above example
