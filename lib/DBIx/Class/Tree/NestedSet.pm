@@ -545,6 +545,49 @@ sub attach_left_sibling {
 # otherwise it comes from the primary key
 #
 sub take_cutting {
+    my $self = shift;
+
+    my ($root, $left, $right, $level) = $self->_get_columns;
+
+
+    $self->result_source->schema->txn_do(sub {
+        my $p_lft = $self->$left;
+        my $p_rgt = $self->$right;
+        return $self if $p_lft == $p_rgt + 1;
+
+        my $pk = ($self->result_source->primary_columns)[0];
+
+        $self->discard_changes;
+        my $root_id = $self->$root;
+
+        my $p_diff = $p_rgt - $p_lft;
+        my $l_diff = $self->$level - 1;
+        my $new_id = $self->$pk;
+        # I'd love to use $self->descendants->update(...),
+        # but it dies with "_strip_cond_qualifiers() is unable to
+        # handle a condition reftype SCALAR".
+        # tough beans.
+        $self->nodes_rs->search({
+            $root   => $root_id,
+            $left   => {'>=' => $p_lft },
+            $right  => {'<=' => $p_rgt },
+        })->update({
+                $left   => \"$left - $p_lft + 1",
+                $right  => \"$right - $p_lft + 1",
+                $root   => $new_id,
+                $level  => \"$level - $l_diff",
+        });
+
+        # fix up the rest of the tree
+        $self->nodes_rs->search({
+                $root   => $root_id,
+                $left   => { '>=' => $p_rgt},
+        })->update({
+                $left   => \"$left  - $p_diff",
+                $right  => \"$right - $p_diff",
+             });
+    });
+    return $self;
 }
 
 # Move a node to the left
