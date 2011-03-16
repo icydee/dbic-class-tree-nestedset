@@ -590,6 +590,19 @@ sub take_cutting {
     return $self;
 }
 
+sub dissolve {
+    my $self = shift;
+    my ($root, $left, $right, $level) = $self->_get_columns;
+    my $pk = ($self->result_source->primary_columns)[0];
+    $self->nodes_rs->search({$root => $self->$root})->update({
+            $level  => 1,
+            $left   => 1,
+            $right  => 2,
+            $root   => \"$pk",
+    });
+    return $self;
+}
+
 # Move a node to the left
 # Swap position with the sibling on the left
 # returns the node it exchanged with on success, undef if it is already leftmost sibling
@@ -1358,6 +1371,11 @@ and the method returns undef.
 Cuts the invocant and its descendants out of the tree they are in,
 making the invocant the root of a new tree. Returns the modified
 invocant.
+
+=head2 dissolve
+
+Dissolves the entire thread, that is turn each node of the thread into a
+single-item tree of its own.
 
 =head1 CAVEATS
 
