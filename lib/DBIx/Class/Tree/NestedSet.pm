@@ -1270,9 +1270,9 @@ e.g. if we had a parent with children A,B,C,D,E
 
 and we attached nodes 1,2,3 in the following calls, we expect the following results.
 
-  $parent->attach_right_child        1,2,3 gives us children A,B,C,D,E,1,2,3
+  $parent->attach_rightmost_child    1,2,3 gives us children A,B,C,D,E,1,2,3
 
-  $parent->attach_left_child         1,2,3 gives us children 1,2,3,A,B,C,D,E
+  $parent->attach_leftmost_child     1,2,3 gives us children 1,2,3,A,B,C,D,E
 
   $child_C->attach_right_sibling     1,2,3 gives us children A,B,C,1,2,3,D,E
 
