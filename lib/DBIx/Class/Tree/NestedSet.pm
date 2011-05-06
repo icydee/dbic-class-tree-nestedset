@@ -365,16 +365,16 @@ sub _graft_branch {
     # Make a hole in the tree to accept the graft
     $self->discard_changes;
     $rset->search({
-        "me.$left"  => {'>=', $arg_left},
-        $root       => $self->$root,
-    })->update({
-        $left       => \"$left + $offset",                          #"
-    });
-    $rset->search({
         "me.$right" => {'>=', $arg_left},
         $root       => $self->$root,
     })->update({
         $right      => \"$right + $offset",                         #"
+    });
+    $rset->search({
+        "me.$left"  => {'>=', $arg_left},
+        $root       => $self->$root,
+    })->update({
+        $left       => \"$left + $offset",                          #"
     });
 
     # make the graft
@@ -444,17 +444,17 @@ sub _move_to_end {
     # Now move everything (except the root) back to fill in the gap
     $offset = $self->$right + 1 - $self->$left;
     $rset->search({
-        "me.$left"  => {'>=', $old_right},
-        $root       => $self->$root,
-    })->update({
-        $left       => \"$left - $offset",                          #"
-    });
-    $rset->search({
         "me.$right" => {'>=', $old_right},
         $left       => {'!=', 1},               # Root needs no adjustment
         $root       => $self->$root,
     })->update({
         $right      => \"$right - $offset",                         #"
+    });
+    $rset->search({
+        "me.$left"  => {'>=', $old_right},
+        $root       => $self->$root,
+    })->update({
+        $left       => \"$left - $offset",                          #"
     });
     $self->discard_changes;
 }
