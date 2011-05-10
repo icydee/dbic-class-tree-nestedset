@@ -11,7 +11,7 @@ use Moose;
 #use Data::Dumper;
 use Test::More;
 
-use namespace::autoclean;
+use namespace::clean;
 
 has 'schema'        => (is => 'rw');        # Schema connection
 
