@@ -1,19 +1,16 @@
 package TestTree;
-#
-# $Id: $
-# $Revision: $
-# $Author: $
-# $Source:  $
-#
-# $Log: $
-#
-use Moose;
-#use Data::Dumper;
+
 use Test::More;
 
 use namespace::clean;
 
-has 'schema'        => (is => 'rw');        # Schema connection
+sub new {
+    my ($class, $args) = @_;
+    use Data::Dumper;
+    bless { schema => $args->{schema} }, $class;
+}
+
+sub schema { shift->{schema} };
 
 sub structure {
     my ($self, $root, $test_str) = @_;
@@ -45,10 +42,5 @@ sub structure {
         $index++;
     }
 }
-
-
-# This speeds up the code and must be at the end of the package
-no Moose;
-__PACKAGE__->meta->make_immutable;
 
 1;
