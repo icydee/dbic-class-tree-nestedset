@@ -5,7 +5,7 @@ use warnings;
 
 use Carp qw/croak/;
 #use Data::Dumper;
-use parent 'DBIx::Class';
+use base 'DBIx::Class';
 
 our $VERSION = '0.07';
 $VERSION = eval $VERSION;
