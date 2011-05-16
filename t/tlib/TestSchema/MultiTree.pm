@@ -3,7 +3,7 @@ use warnings;
 
 package TestSchema::MultiTree;
 
-use parent 'DBIx::Class';
+use base 'DBIx::Class';
 
 __PACKAGE__->load_components(qw/Tree::NestedSet Core/);
 __PACKAGE__->table('tree');
